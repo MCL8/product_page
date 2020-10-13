@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('number')->unique();
             $table->string('name');
             $table->float('price');
+            $table->string('image')->nullable();
             $table->boolean('in_stock');
             $table->timestamps();
 
