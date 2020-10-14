@@ -12,6 +12,10 @@
 
 -Склонировать проект на локальную машину и войти в папку проекта
 
+>git clone https://github.com/MCL8/product_page/
+
+>cd product_page
+
 -Установить все зависимости приложения через Composer
 >composer install
 
