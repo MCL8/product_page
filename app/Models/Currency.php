@@ -10,6 +10,22 @@ class Currency extends Model
 {
     use HasFactory;
 
+    const CURRENCY_SYMBOLS = [
+        'kzt' => '₸',
+        'rub' => '₽'
+    ];
+
+    public static function getRate($currencyCode)
+    {
+        $currency = self::where('code', $currencyCode)->firstOrFail();
+
+        if (!$currency) {
+            return false;
+        }
+
+        return $currency->value;
+    }
+
     public static function updateRates()
     {
         $ratesXml = file_get_contents('https://nationalbank.kz/rss/rates_all.xml');
