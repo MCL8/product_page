@@ -40,24 +40,26 @@
                     <b><span class="mr-4">KZT</span></b>
                     <a href="{{ route('index', ['currency' => 'rub']) }}">RUB</a>
                 @endif
-                    <a class="ml-12" href="{{ route('payments') }}">История платежей</a>
+
+
+                @if (Route::has('login'))
+                    <div class="ml-12">
+                        @auth
+                            <a href="{{ route('payments') }}">История платежей</a>
+                            <a href="{{ url('/dashboard') }}" class="ml-12 text-sm text-gray-700 underline">Dashboard</a>
+                        @else
+                            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Вход</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Регистрация</a>
+                            @endif
+                        @endif
+                    </div>
+                @endif
+
             </div>
         </nav>
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                    @endif
-                </div>
-            @endif
 
 
             <div class="container">
