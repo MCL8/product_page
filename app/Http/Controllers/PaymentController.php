@@ -16,13 +16,7 @@ class PaymentController extends Controller
         }
 
         $payment = new Payment(array_merge($request->post(), ['user_id' => Auth::id()]));
-
-        if ($payment->save()) {
-            $product = Product::findOrFail($request->post('product_id'));
-            $product->paid = 1;
-            return $product->save();
-        }
-
-        return false;
+        
+        return $payment->save();
     }
 }
