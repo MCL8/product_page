@@ -11,7 +11,17 @@ class PaymentController extends Controller
 {
     public function pay(Request $request)
     {
-        $payment = new Payment(array_merge($request->post(), ['user_id' => Auth::id()]));
+        $request->validate([
+            'product_id' => 'required|integer',
+            'currency' => 'required|string|max:255',
+            'amount' => 'required|numeric'
+        ]);
+
+        $payment = new Payment();
+        $payment->user_id = auth()->id();
+        $payment->product_id = $request->product_id;
+        $payment->currency = $request->currency;
+        $payment->amount = $request->amount;
 
         return $payment->save();
     }
