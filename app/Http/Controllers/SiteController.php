@@ -21,10 +21,6 @@ class SiteController extends Controller
 
     public function payments()
     {
-        if (!Auth::check()) {
-            return redirect()->route('index');
-        }
-
         $payments = Payment::where('user_id', Auth::id())->get();
 
         return view('payments', compact('payments'));
