@@ -10,6 +10,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['category_id', 'number', 'name', 'price', 'image', 'in_stock'];
+
     public function getPrice($rate)
     {
         if ($rate == 1) {

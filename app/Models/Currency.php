@@ -15,6 +15,8 @@ class Currency extends Model
         'rub' => '₽'
     ];
 
+    protected $fillable = ['name', 'code', 'value'];
+
     public static function getRate($currencyCode)
     {
         $currency = self::where('code', $currencyCode)->firstOrFail();
