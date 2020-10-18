@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'index'])->name('index');
-Route::get('/payments', [\App\Http\Controllers\SiteController::class, 'payments'])->name('payments');
+Route::get('/payments', [\App\Http\Controllers\SiteController::class, 'payments'])
+    ->middleware('auth')
+    ->name('payments');
 
 Route::get('/update_rates', [\App\Http\Controllers\CurrencyController::class, 'update']);
 
@@ -22,4 +24,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::post('/payment/pay', [\App\Http\Controllers\PaymentController::class, 'pay']);
+Route::post('/payment/pay', [\App\Http\Controllers\PaymentController::class, 'pay'])
+    ->middleware('auth');
