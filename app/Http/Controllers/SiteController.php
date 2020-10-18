@@ -12,8 +12,12 @@ class SiteController extends Controller
 {
     public function index(Request $request)
     {
+        $request->validate([
+            'currency' => 'string|max:255',
+        ]);
+
         $products = Product::all();
-        $currency = $request->get('currency') ?? 'kzt';
+        $currency = $request->get('currency', 'kzt');
         $rate = Currency::getRate($currency);
 
         return view('welcome', compact('products', 'currency', 'rate'));
