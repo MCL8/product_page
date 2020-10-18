@@ -21,7 +21,7 @@ class SiteController extends Controller
 
     public function payments()
     {
-        $payments = Payment::where('user_id', Auth::id())->get();
+        $payments = Payment::where('user_id', auth()->id())->get();
 
         return view('payments', compact('payments'));
     }

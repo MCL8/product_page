@@ -80,7 +80,7 @@
                                 @endif
                             </b>
                             <br><br>
-                            @if ($product->isPaid(\Illuminate\Support\Facades\Auth::id()))
+                            @if ($product->isPaid(auth()->id()))
                                 <button type="button" class="btn btn-primary btn-lg" disabled>
                                     Оплачено
                                 </button>
