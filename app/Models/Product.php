@@ -14,6 +14,9 @@ class Product extends Model
 
     public function getPrice($rate)
     {
+        if ($rate <= 0) {
+            return 0;
+        }
         if ($rate == 1) {
             return $this->price;
         }
@@ -33,7 +36,7 @@ class Product extends Model
 
     public function isPaid($userId)
     {
-        return Payment::where([['product_id', '=', $this->id], ['user_id', '=', $userId]])->first();
+        return Payment::where('product_id', $this->id)->where('user_id', $userId)->first();
     }
 
     public function category()
