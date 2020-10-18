@@ -11,12 +11,8 @@ class PaymentController extends Controller
 {
     public function pay(Request $request)
     {
-        if (!Auth::check()) {
-            return false;
-        }
-
         $payment = new Payment(array_merge($request->post(), ['user_id' => Auth::id()]));
-        
+
         return $payment->save();
     }
 }
